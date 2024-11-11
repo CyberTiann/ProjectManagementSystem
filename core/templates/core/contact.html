@@ -1,9 +1,68 @@
 {% extends "core/base.html" %}
 
 {% block title %}
-Contact
+Contact Developer
 {% endblock title %}
 
 {% block content %}
-<h1>The contact.</h1>
+<div class="max-w-2xl mx-auto mt-6 p-8 bg-white rounded-xl shadow-lg">
+    <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Contact the Developer</h1>
+    
+    <div class="mb-8">
+        <div class="flex items-center justify-center mb-6">
+            <!-- Profile Image - Replace with actual image if desired -->
+            <div class="w-32 h-32 bg-teal-500 rounded-full flex items-center justify-center">
+                <span class="text-4xl text-white font-bold">CV</span>
+            </div>
+        </div>
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-2">Christian Vinarao</h2>
+        <p class="text-center text-gray-600 mb-6">IT Unit Developer</p>
+    </div>
+
+    <div class="space-y-6">
+        <!-- Contact Cards -->
+        <div class="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition duration-300">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-teal-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-500">Phone Number</p>
+                    <p class="text-lg font-semibold">09053347260</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition duration-300">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-teal-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-500">Email Address</p>
+                    <p class="text-lg font-semibold">cvinarao50@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition duration-300">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-teal-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <div>
+                    <p class="text-sm text-gray-500">Location</p>
+                    <p class="text-lg font-semibold">National Development Company</p>
+                    <p class="text-gray-600">IT Unit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 text-center text-gray-600">
+        <p>Available during office hours</p>
+        <p>Monday to Friday, 8:00 AM - 5:00 PM</p>
+    </div>
+</div>
 {% endblock content %}

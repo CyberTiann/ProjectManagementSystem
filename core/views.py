@@ -6,7 +6,7 @@ from project.models import Category, Project, Status
 from .forms import SignupForm
 # Create your views here.
 def index(request):
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by('-id')[:6]
     categories = Category.objects.all()
     status = Status.objects.all()
 

@@ -51,6 +51,7 @@ def projects(request):
         'total_cost': formatted_total_cost
     })
 
+@login_required
 def detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
     related_projects = Project.objects.filter(category=project.category).exclude(pk=pk)[0:3]
