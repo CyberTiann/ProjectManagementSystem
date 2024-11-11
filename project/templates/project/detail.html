@@ -1,0 +1,66 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+{{ project.name }}
+{% endblock title %}
+
+{% block content  %}
+<div class="flex justify-center">
+    <div class="p-8 m-7 grid grid-cols-5 gap-6">
+
+        <div class="col-span-3">
+            <img src="{{ project.map.url }}" class="rounded-xl">
+        </div>
+    
+        <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+            <h1 class="mb-6 text-3xl">{{ project.name }}</h1>
+            <h3 class="text-2xl">{{ project.category }}</h3>
+            <p class="text-gray-500"><strong>Cost: ₱</strong>{{ project.project_cost }}</p> 
+            <p class="text-gray-500"><strong>Status: </strong> {{ project.status }}</p>
+            <p class="text-gray-500"><strong>Contact: </strong> {{ project.contact }}</p>
+            <p class="text-gray-500"><strong>Date Started: </strong> {{ project.started }}</p>
+            <p class="text-gray-500">
+            <strong>Update: </strong><br>
+                {{ project.update }}
+            </p>  
+            
+            {% if project.description %}
+                <p class="text-gray-500">
+                    <strong>Description: </strong><br>
+                    {{ project.description }}
+                </p>  
+            {% endif %}  
+            <div class="mt-6 p-6 bg-white rounded-xl">
+                
+                <a href="{% url 'project:edit' project.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl">Edit Project Details</a>
+                <a href="{% url 'project:delete' project.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl">Remove Project</a>
+            </div>
+
+    
+        </div>
+    
+    </div>
+</div>
+<div  class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center">Other Projects</h2>
+
+    <div class="grid grid-cols-3 gap-3">
+        {% for project in related_projects  %}
+        <div>
+            <a href="{% url 'project:detail' project.id %}">
+                <div>
+                    <img src="{{ project.map.url }}" class="rounder-t-xl">
+                </div>
+                <div class="p-6 bg-white rounded-b-xl">
+                    <h2 class="text=2x;">{{ project.name }}</h2>
+                    <h3 class="text=2x;">{{ project.category }}</h3>
+                    <p class="text-gray-500">Cost:₱ {{ project.project_cost }}
+                    <p class="text-gray-500">Status: {{ project.status }}   
+                    </p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

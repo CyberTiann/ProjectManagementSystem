@@ -1,0 +1,122 @@
+{% extends "core/base.html" %}
+{% load custom_filters %}
+{% block title %} Projects {% endblock  %}
+
+{% block content %}
+
+    <div class="p-6 grid grid-cols-4 gap-4 bg-gray-100">
+        {% if year_id or category_id %}
+        <div class="col-span-4 mb-4 p-4 bg-white rounded-xl shadow">
+            <h2 class="text-xl font-semibold">
+                Total Cost: ₱{{ total_cost }}
+                {% if year_id %}
+                    for Year {{ years|dictsort:"id"|dictget:year_id|attr:"name" }}
+                {% endif %}
+                {% if category_id %}
+                    in Category {{ categories|dictsort:"id"|dictget:category_id|attr:"name" }}
+                {% endif %}
+            </h2>
+        </div>
+        {% endif %}
+        <div class="col-span-1">
+            <form method="get" action="{% url 'project:projects' %}">
+                <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}"placeholder=" Search Project">
+            
+                <button class="mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl" >Search</button>
+            </form>
+
+            <hr class="my-6">
+            <div>
+                <button onclick="toggleCategories()" class="font-semibold w-full text-left flex items-center justify-between">
+                    Categories
+                    <svg id="categoryArrow" class="w-4 h-4 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <ul id="categoryList" class="hidden">
+                    {% for category in categories %}
+                        <li class="py-2 px-2 rounded-xl{% if category.id == category_id %} bg-gray-200 {% endif %}">
+                            <a href="{% url 'project:projects' %}?query={{ query }}&category={{ category.id }}">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr class="my-6">
+            <div>
+                <button onclick="toggleYears()" class="font-semibold w-full text-left flex items-center justify-between">
+                    Years
+                    <svg id="yearArrow" class="w-4 h-4 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <ul id="yearList" class="hidden">
+                    {% for year in years %}
+                        <li class="py-2 px-2 rounded-xl{% if year.id == year_id %} bg-gray-200 {% endif %}">
+                            <a href="{% url 'project:projects' %}?query={{ query }}&year={{ year_id }}&year={{ year.id }}">
+                                {{ year.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr class="my-6">
+            <p class="font-semibold">Clear Filters</p>
+            <ul>
+                <li><a href="{% url 'project:projects' %}">Reset</a></li>
+            </ul>
+        </div>
+
+        <div class="col-span-3">
+            <div class="grid grid-cols-3 gap-3">
+                {% for project in projects  %}
+                <div>
+                    <a href="{% url 'project:detail' project.id %}">
+                        <div>
+                            <img src="{{ project.map.url }}" class="rounder-t-xl">
+                        </div>
+                        <div class="p-6 bg-white rounded-b-xl">
+                            <h2 class="text=2x;">{{ project.name }}</h2>
+                            <h3 class="text=2x;">{{ project.category }}</h3>
+                            <p class="text-gray-500">Cost:₱ {{ project.project_cost }}
+                            <p class="text-gray-500">Status: {{ project.status }}   
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleCategories() {
+            const categoryList = document.getElementById('categoryList');
+            const arrow = document.getElementById('categoryArrow');
+            
+            categoryList.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+
+        function toggleYears() {
+            const yearList = document.getElementById('yearList');
+            const arrow = document.getElementById('yearArrow');
+            
+            yearList.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+    </script>
+
+    <style>
+        .transition-transform {
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+    </style>
+{% endblock %}
