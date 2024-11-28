@@ -31,6 +31,7 @@ class Year(models.Model):
         return self.name
     
 class Project(models.Model):
+    project_id = models.CharField(max_length=255, unique=True, null=True, blank=True)
     year = models.ForeignKey(Year, related_name='project', on_delete=models.CASCADE)
     uploader = models.ForeignKey(User, related_name='project', on_delete=models.CASCADE)
     map = models.ImageField(upload_to='map_images', blank=True, null=True, verbose_name="Thumbnail")

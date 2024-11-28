@@ -6,9 +6,10 @@ INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 class NewProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('year', 'map', 'address', 'document', 'name', 'category', 'project_cost', 'status', 'started', 'contact', 'description', 'update',)
+        fields = ('project_id', 'year', 'map', 'address', 'document', 'name', 'category', 'project_cost', 'status', 'started', 'contact', 'description', 'update',)
 
         widgets = {
+            'project_id': forms.TextInput(attrs={'class': INPUT_CLASSES}),
             'year': forms.Select(attrs={'class': INPUT_CLASSES}),
             'map': forms.FileInput(attrs={'class': INPUT_CLASSES}),
             'document': forms.FileInput(attrs={'class': INPUT_CLASSES}),
@@ -26,9 +27,10 @@ class NewProjectForm(forms.ModelForm):
 class EditProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('year', 'name', 'document', 'project_cost', 'status', 'started', 'contact', 'description', 'update', 'address',)
+        fields = ('project_id', 'year', 'name', 'document', 'project_cost', 'status', 'started', 'contact', 'description', 'update', 'address',)
 
         widgets = {
+            'project_id': forms.TextInput(attrs={'class': INPUT_CLASSES}),
             'year': forms.Select(attrs={'class': INPUT_CLASSES}),
             'map': forms.FileInput(attrs={'class': INPUT_CLASSES}),
             'document': forms.FileInput(attrs={'class': INPUT_CLASSES}),

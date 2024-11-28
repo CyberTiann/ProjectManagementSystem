@@ -70,6 +70,12 @@
                             <span class="text-gray-500">No document uploaded</span>
                         {% endif %}
                     </div>
+
+                    <div class="flex items-center text-gray-700">
+                        <i class="fas fa-id-badge mr-3 text-teal-500 w-6"></i>
+                        <span class="font-semibold mr-2">Project ID:</span>
+                        <span>{{ project.project_id }}</span>
+                    </div>
                 </div>
 
                 {% if project.update %}
